@@ -52,7 +52,7 @@ namespace DataLayer.ExtraAuthClasses
         public IEnumerable<Permissions> PermissionsInRole => _permissionsInRole.UnpackPermissionsFromString();
 
         public static IStatusGeneric<RoleToPermissions> CreateRoleWithPermissions(string roleName, string description, ICollection<Permissions> permissionInRole,
-            ExtraAuthorizeDbContext context)
+            MyDbContext context)
         {
             var status = new StatusGenericHandler<RoleToPermissions>();
             if (context.Find<RoleToPermissions>(roleName) != null)
@@ -74,7 +74,7 @@ namespace DataLayer.ExtraAuthClasses
         }
 
         public IStatusGeneric DeleteRole(string roleName, bool removeFromUsers,
-            ExtraAuthorizeDbContext context)
+            MyDbContext context)
         {
             var status = new StatusGenericHandler { Message = "Deleted role successfully." };
             var roleToUpdate = context.Find<RoleToPermissions>(roleName);

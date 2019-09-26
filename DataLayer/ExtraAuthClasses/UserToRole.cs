@@ -35,7 +35,7 @@ namespace DataLayer.ExtraAuthClasses
         public RoleToPermissions Role { get; private set; }
 
 
-        public static IStatusGeneric<UserToRole> AddRoleToUser(string userId, string roleName, ExtraAuthorizeDbContext context)
+        public static IStatusGeneric<UserToRole> AddRoleToUser(string userId, string roleName, MyDbContext context)
         {
             if (roleName == null) throw new ArgumentNullException(nameof(roleName));
 
