@@ -27,14 +27,12 @@
     if (permissions != null)
     {
         <h4>The user has the following permissions</h4>
-            <ul>
-        @foreach (var permission in permissions.UnpackPermissionsFromString())
-        {
-
-                    <li>@permission</li>
-
-        }
-            </ul>
+        <ul>
+            @foreach (var permission in permissions.UnpackPermissionsFromString())
+            {
+                <li>@permission</li>
+            }
+        </ul>
     }
     else
     {
@@ -45,4 +43,6 @@
 else
 {
     <h3>No one currently logged in.</h3>
+
+    <p>You can log in with the SuperAdmin user I added on startup. By default the SuperAdmin's username and password is <strong>Super@g1.com</strong></p>
 }
