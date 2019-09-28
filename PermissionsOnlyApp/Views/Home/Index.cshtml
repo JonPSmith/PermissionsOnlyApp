@@ -1,8 +1,48 @@
-﻿@{
+﻿@using PermissionParts;
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>
+        This is a demo of applying one of "better authorization" features to your ASP.NET Core
+        <br />
+        <a href="https://www.thereformedprogrammer.net/a-better-way-to-handle-authorization-in-asp-net-core/">A better way to handle authorization in ASP.NET Core</a>.
+    </p>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>The user @User.Identity.Name is logged in.</h3>
+    <h4>Their claims are</h4>
+    <ul>
+
+        @foreach (var claim in User.Claims)
+        {
+            <li>@claim.ToString()</li>
+        }
+    </ul>
+    var permissions = User.Claims?.SingleOrDefault(c => c.Type == FeatureAuthorize.PermissionConstants.PackedPermissionClaimType)?.Value;
+    if (permissions != null)
+    {
+        <h4>The user has the following permissions</h4>
+            <ul>
+        @foreach (var permission in permissions.UnpackPermissionsFromString())
+        {
+
+                    <li>@permission</li>
+
+        }
+            </ul>
+    }
+    else
+    {
+        <h4>No Permissions applied to this user</h4>
+    }
+
+}
+else
+{
+    <h3>No one currently logged in.</h3>
+}

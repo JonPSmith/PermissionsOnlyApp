@@ -22,8 +22,12 @@ namespace DataLayer
         {
             //Your configuration code will go here
 
-            //Extra
+            //ExtraAuthClasses configurations
             modelBuilder.Entity<UserToRole>().HasKey(x => new { x.UserId, x.RoleName });
+
+            modelBuilder.Entity<RoleToPermissions>()
+                .Property("_permissionsInRole")
+                .HasColumnName("PermissionsInRole");
         }
     }
 }

@@ -14,4 +14,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\GenericServicesStandIn\GenericServicesStandIn.csproj" />
+    <ProjectReference Include="..\RolesToPermissions\RolesToPermissions.csproj" />
+  </ItemGroup>
+
 </Project>
