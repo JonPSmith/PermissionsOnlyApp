@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AuthorizeSetup;
 using DataLayer;
+using FeatureAuthorize.PolicyCode;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -44,6 +46,10 @@ namespace PermissionsOnlyApp
 
             //This registers the code to add the Permissions on login
             services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, AddPermissionsToUserClaims>();
+
+            //Register the Permission policy handlers
+            services.AddSingleton<IAuthorizationPolicyProvider, AuthorizationPolicyProvider>();
+            services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
